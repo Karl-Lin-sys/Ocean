@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recruitment and bias-free evaluation portal for the Project Research Assistant position at National Taiwan University Institute of Oceanography, Lab 311.">
+    <title>NTU Oceanography | Recruitment & Evaluation Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Waves Decorative -->
+    <div class="ocean-bg-waves"></div>
+
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <span class="logo-icon">🌊</span>
+                <div>
+                    <h1>National Taiwan University</h1>
+                    <p class="subtitle">Institute of Oceanography • Lab 311 (Prof. Tsui-Yu Chang)</p>
+                </div>
+            </div>
+            <nav class="portal-nav">
+                <button id="nav-candidate" class="nav-btn active" onclick="switchTab('candidate')">Candidate Portal</button>
+                <button id="nav-evaluator" class="nav-btn" onclick="switchTab('evaluator')">Evaluator Dashboard</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- CANDIDATE PORTAL -->
+        <section id="portal-candidate" class="portal-section active">
+            <div class="grid-layout">
+                <!-- Job details card -->
+                <div class="card job-details-card">
+                    <span class="badge">Job Posting</span>
+                    <h2>Project Research Assistant</h2>
+                    <p class="location">📍 Taipei City, Da'an District (NTU Main Campus)</p>
+                    <p class="salary">💰 学士級起薪 $32,466元 | 碩士級起薪 $37,132元 (Adjusted by experience)</p>
+                    
+                    <hr class="divider">
+                    
+                    <h3>Position Overview</h3>
+                    <p>We are seeking a dedicated <strong>Project Research Assistant</strong> to join Professor Tsui-Yu Chang's research group (Lab 311) at the Institute of Oceanography, NTU. The successful candidate will assist with computer numerical analysis, scientific programming, and general project management.</p>
+                    
+                    <h3>Primary Responsibilities</h3>
+                    <ul>
+                        <li>Analyse earth science, seismology, and oceanographic datasets.</li>
+                        <li>Develop computer programmes for numerical modeling and machine learning applications.</li>
+                        <li>Collaborate on compiling, editing, and writing scientific research reports.</li>
+                        <li>Maintain and manage the laboratory website and computational hardware.</li>
+                    </ul>
+
+                    <h3>Essential Qualifications</h3>
+                    <ul>
+                        <li>Bachelor's or Master's degree in Earth Sciences, Physics, Mathematics, Computer Science, or a related quantitative field.</li>
+                        <li>Interest in computer numerical analysis, geophysics, or system integration.</li>
+                        <li>Basic programming capability (Python, MATLAB, or C/C++).</li>
+                    </ul>
+                </div>
+
+                <!-- Application Form -->
+                <div class="card application-card">
+                    <h2>Anonymised Skill Assessment</h2>
+                    <p class="info-text">To eliminate hiring biases (including the Fundamental Attribution Error), your personal details are encrypted and hidden from reviewers. Your application will be evaluated solely based on the structured work samples below.</p>
+                    
+                    <form id="application-form" onsubmit="handleApplicationSubmit(event)">
+                        <!-- Hidden details (Not shown to evaluator) -->
+                        <div class="form-group row">
+                            <div class="col">
+                                <label for="candidate-name">Full Name (Confidential)</label>
+                                <input type="text" id="candidate-name" required placeholder="e.g. Jean-Pierre Dupont">
+                            </div>
+                            <div class="col">
+                                <label for="candidate-email">Email Address (Confidential)</label>
+                                <input type="email" id="candidate-email" required placeholder="e.g. jp.dupont@uwaterloo.ca">
+                            </div>
+                        </div>
+
+                        <!-- Structured Work Samples -->
+                        <div class="work-sample-section">
+                            <h3>Part 1: Data Interpretation & Scientific Summarization</h3>
+                            <label class="question-label" for="sample-writing">
+                                Scenario: You are given a seismic velocity profile showing a sudden velocity drop at 15 km depth beneath the Okinawa Trough. In Canadian English, write a short summary (150-250 words) interpreting this phenomenon for a scientific report.
+                            </label>
+                            <textarea id="sample-writing" rows="6" required placeholder="Analyse the thermal structure, potential partial melting, or crustal extension in the region..."></textarea>
+                        </div>
+
+                        <div class="work-sample-section">
+                            <h3>Part 2: Numerical Code Debugging & Optimization</h3>
+                            <div class="code-box">
+<pre><code># Scenario: Seismic wave simulation using finite differences.
+# The code below experiences artificial energy reflection at the grid boundaries.
+# Detail how you would implement an absorbing boundary condition (e.g., PML) 
+# or solve this boundary reflection issue.
+
+def run_simulation(grid_size, time_steps):
+    # Initialize wave fields
+    u = np.zeros(grid_size)
+    v = np.zeros(grid_size)
+    
+    for t in range(time_steps):
+        # Update wave equation
+        u[1:-1] = 2*u[1:-1] - v[1:-1] + dt**2 * c**2 * np.diff(u, 2)
+        # TODO: Implement boundary condition to prevent energy leaks
+        
+    return u</code></pre>
+                            </div>
+                            <label class="question-label" for="sample-code">Provide your correction or describe your code adaptation to prevent boundary energy reflection:</label>
+                            <textarea id="sample-code" class="code-input" rows="8" required placeholder="Write your Python code modification or conceptual programming solution here..."></textarea>
+                        </div>
+
+                        <div class="work-sample-section">
+                            <h3>Part 3: Website & System Administration Scenario</h3>
+                            <label class="question-label" for="sample-system">
+                                Describe your experience or strategy for setting up a secure server to host laboratory datasets, and managing daily backup programmes for large geophysical data files.
+                            </label>
+                            <textarea id="sample-system" rows="5" required placeholder="Describe server setups, automated cron jobs for backups, and web page management..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit Anonymous Work Samples</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVALUATOR DASHBOARD -->
+        <section id="portal-evaluator" class="portal-section">
+            <div class="dashboard-layout">
+                <!-- Sidebar candidate list -->
+                <div class="card list-card">
+                    <h3>Anonymised Candidates</h3>
+                    <p class="hint-text">Double-blind scoring in progress.</p>
+                    <ul id="candidate-list" class="candidate-menu">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+
+                <!-- Main grading area -->
+                <div class="card grading-card" id="grading-area">
+                    <div id="no-candidate-selected" class="empty-state">
+                        <span class="empty-icon">📂</span>
+                        <h3>No Candidate Selected</h3>
+                        <p>Select a candidate from the left panel to begin double-blind, structured assessment.</p>
+                    </div>
+
+                    <div id="active-grading" class="active-grading-content" style="display: none;">
+                        <div class="candidate-header">
+                            <h2>Evaluating Candidate: <span id="display-candidate-id">NTU-OCEAN-X</span></h2>
+                            <span class="status-badge" id="display-candidate-status">Pending Review</span>
+                        </div>
+
+                        <!-- Work samples display -->
+                        <div class="tabs-sub">
+                            <button class="sub-tab active" onclick="switchSubTab('writing')">Part 1: Scientific Report</button>
+                            <button class="sub-tab" onclick="switchSubTab('code')">Part 2: Python Code</button>
+                            <button class="sub-tab" onclick="switchSubTab('system')">Part 3: System Administration</button>
+                        </div>
+
+                        <div id="subcontent-writing" class="sub-content active">
+                            <h4>Scientific Summarisation Response</h4>
+                            <div class="response-display" id="resp-writing"></div>
+                        </div>
+
+                        <div id="subcontent-code" class="sub-content">
+                            <h4>Numerical Code Adaptation Response</h4>
+                            <pre class="response-display-code"><code id="resp-code"></code></pre>
+                        </div>
+
+                        <div id="subcontent-system" class="sub-content">
+                            <h4>System & Backup Management Response</h4>
+                            <div class="response-display" id="resp-system"></div>
+                        </div>
+
+                        <!-- Grading form -->
+                        <form id="grading-form" onsubmit="submitCandidateGrade(event)">
+                            <h3 class="section-title">Structured Grading & Calibration</h3>
+                            
+                            <div class="score-grid">
+                                <div class="score-group">
+                                    <label for="score-writing">Part 1 Score: Data Synthesis (1 - 5)</label>
+                                    <input type="range" id="score-writing" min="1" max="5" step="1" value="3" oninput="updateScoreLabel('writing')">
+                                    <span class="score-value" id="val-writing">3/5 (Competent)</span>
+                                    <p class="rubric-desc">1: Poor English/Incoherent; 3: Clear interpretation; 5: Exceptional academic writing & geochemical depth.</p>
+                                </div>
+
+                                <div class="score-group">
+                                    <label for="score-code">Part 2 Score: Programming (1 - 5)</label>
+                                    <input type="range" id="score-code" min="1" max="5" step="1" value="3" oninput="updateScoreLabel('code')">
+                                    <span class="score-value" id="val-code">3/5 (Competent)</span>
+                                    <p class="rubric-desc">1: No programming knowledge; 3: Understands finite difference & boundary reflection; 5: Correct PML math & Python structures.</p>
+                                </div>
+
+                                <div class="score-group">
+                                    <label for="score-system">Part 3 Score: Systems (1 - 5)</label>
+                                    <input type="range" id="score-system" min="1" max="5" step="1" value="3" oninput="updateScoreLabel('system')">
+                                    <span class="score-value" id="val-system">3/5 (Competent)</span>
+                                    <p class="rubric-desc">1: No IT experience; 3: Mentions cron/backups & web hosting; 5: Robust automated backup & server deployment strategy.</p>
+                                </div>
+                            </div>
+
+                            <!-- FAE BIAS CHECK -->
+                            <div class="fae-checkpoint">
+                                <h4>⚠️ Anti-Bias Checkpoint: Mitigating the Fundamental Attribution Error</h4>
+                                <p class="fae-desc">
+                                    The Fundamental Attribution Error causes us to blame candidate errors on lack of intelligence (internal factors) rather than exam stress or environmental differences (situational factors).
+                                </p>
+                                
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="fae-check-1" required>
+                                    <label for="fae-check-1">I have considered whether typos or brief responses could be due to exam stress or keyboard layout issues rather than a lack of dedication.</label>
+                                </div>
+
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="fae-check-2" required>
+                                    <label for="fae-check-2">I have evaluated candidate code based on computational logic, recognizing that formatting anomalies may stem from coding environment constraints.</label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fae-reflection">Describe any situational factors you accounted for during this evaluation to avoid attribution error:</label>
+                                    <textarea id="fae-reflection" rows="2" required placeholder="e.g. Candidate might have answered on a phone/different keyboard layout, or experienced time-constraint pressure..."></textarea>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success">Submit & Calibrate Candidate Score</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Leaderboard Card -->
+                <div class="card leaderboard-card">
+                    <h3>Calibrated Leaderboard</h3>
+                    <p class="hint-text">Weighted rankings of anonymised candidates.</p>
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Candidate ID</th>
+                                <th>Writing</th>
+                                <th>Coding</th>
+                                <th>Systems</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 National Taiwan University Institute of Oceanography. Designed following evidence-based bias elimination methodologies.</p>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
